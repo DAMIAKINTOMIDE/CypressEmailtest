@@ -5,10 +5,11 @@ context("login", () =>{
     const serverDomain = "ttf09ue3.mailosaur.net";
     const emailaddress = "login@"+serverDomain;
     
-    it('Makes a Password Reset request', () => {
+    it('login', () => {
         cy.visit('https://mailosaur.com/app/servers/')
         cy.get('#email').type('damiakintomide@gmail.com')
-
+        cy.get('form > button').click()
+        
     })
 
     it('send email', () => {
@@ -21,7 +22,7 @@ context("login", () =>{
     })
 
     it('Gets email', () => {   
-        cy.mailosaurGetMessage(serverId, {
+        cy.mailosaurGetMessage(serverid, {
             sentTo: emailaddress
         }).then(email => {
             expect(email.subject).to.equal('Automation Test');
